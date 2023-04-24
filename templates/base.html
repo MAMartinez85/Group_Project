@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+        <li><a href="{{ url_for('schedule.schedule_creator') }}">Schedule</a></li>
+      </ul>
+    </nav>
+    <main>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
