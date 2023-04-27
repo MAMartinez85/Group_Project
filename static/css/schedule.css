@@ -38,3 +38,8 @@ form label {
   table tr:hover {
     background-color: #f5f5f5;
   }
+
+  body {
+    background-color: #fff;
+    background-image: linear-gradient(to bottom right, #fce5cd, #f7c68c);
+}

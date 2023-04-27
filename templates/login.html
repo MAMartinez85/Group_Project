@@ -8,11 +8,41 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <style>
+        body {
+            background-color: #fff;
+            background-image: linear-gradient(to bottom right, #fce5cd, #f7c68c);
+        }
+
+        .columns {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: background-color 0.5s ease-out;
+        }
+
+        .box:hover {
+            background-color: #f9f9f9;
+        }
+
+        .box input[type="email"],
+        .box input[type="password"] {
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="columns is-centered has-text-centered">
-        <div class="column is-4 is-offset-4">
+        <div class="column is-4">
             <h3 class="title">Login</h3>
             <div class="box">
                 {% with messages = get_flashed_messages() %}
@@ -29,7 +59,6 @@
                                 autofocus="">
                         </div>
                     </div>
-
                     <div class="field">
                         <div class="control">
                             <input class="input is-large" type="password" name="password" placeholder="Your Password">
@@ -48,7 +77,6 @@
                 <a href="/signup"><button class="button is-block is-link is-large is-fullwidth">Signup</button></a>
             </div>
         </div>
-
     </div>
 </body>
 

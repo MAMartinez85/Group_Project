@@ -3,80 +3,80 @@
 {% block title %}Daily Schedule{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/schedule.css') }}">
 {% endblock %}
 
 {% block content %}
-  <h1>Daily Schedule</h1>
-  <form method="POST" action="{{ url_for('schedule.schedule_creator') }}">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
-    <br>
-    <label for="start_date">Start Date:</label>
-    <input type="date" id="start_date" name="start_date" required>
-    <br>
-    <label for="start_hour">Start Hour:</label>
-    <select id="start_hour" name="start_hour" required>
-      {% for hour in range(1, 13) %}
-        <option value="{{ hour }}">{{ '{:02d}'.format(hour) }}</option>
-      {% endfor %}
-    </select>
-    <label for="start_minute">Start Minute:</label>
-    <select id="start_minute" name="start_minute" required>
-      {% for minute in range(0, 60, 15) %}
-        <option value="{{ minute }}">{{ '{:02d}'.format(minute) }}</option>
-      {% endfor %}
-    </select>
-    <select id="start_am_pm" name="start_am_pm" required>
-      <option value="AM">AM</option>
-      <option value="PM">PM</option>
-    </select>
-    <br>
-    <label for="end_date">End Date:</label>
-    <input type="date" id="end_date" name="end_date" required>
-    <br>
-    <label for="end_hour">End Hour:</label>
-    <select id="end_hour" name="end_hour" required>
-      {% for hour in range(1, 13) %}
-        <option value="{{ hour }}">{{ '{:02d}'.format(hour) }}</option>
-      {% endfor %}
-    </select>
-    <label for="end_minute">End Minute:</label>
-    <select id="end_minute" name="end_minute" required>
-      {% for minute in range(0, 60, 15) %}
-        <option value="{{ minute }}">{{ '{:02d}'.format(minute) }}</option>
-      {% endfor %}
-    </select>
-    <select id="end_am_pm" name="end_am_pm" required>
-      <option value="AM">AM</option>
-      <option value="PM">PM</option>
-    </select>
-    <br>
-    <button type="submit">Add Event</button>
-  </form>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Start Time</th>
-        <th>End Time</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for event in events %}
-      <tr>
-        <td>{{ event.title }}</td>
-        <td>{{ event.start_time.strftime('%Y-%m-%d %I:%M %p') }}</td>
-        <td>{{ event.end_time.strftime('%Y-%m-%d %I:%M %p') }}</td>
-        <td>
-          <a href="{{ url_for('schedule.edit_event', event_id=event.id) }}">Edit</a>
-          <form method="POST" action="{{ url_for('schedule.delete_event', event_id=event.id) }}">
-            <button type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<h1>Daily Schedule</h1>
+<form method="POST" action="{{ url_for('schedule.schedule_creator') }}">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required>
+  <br>
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date" required>
+  <br>
+  <label for="start_hour">Start Hour:</label>
+  <select id="start_hour" name="start_hour" required>
+    {% for hour in range(1, 13) %}
+    <option value="{{ hour }}">{{ '{:02d}'.format(hour) }}</option>
+    {% endfor %}
+  </select>
+  <label for="start_minute">Start Minute:</label>
+  <select id="start_minute" name="start_minute" required>
+    {% for minute in range(0, 60, 15) %}
+    <option value="{{ minute }}">{{ '{:02d}'.format(minute) }}</option>
+    {% endfor %}
+  </select>
+  <select id="start_am_pm" name="start_am_pm" required>
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </select>
+  <br>
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date" required>
+  <br>
+  <label for="end_hour">End Hour:</label>
+  <select id="end_hour" name="end_hour" required>
+    {% for hour in range(1, 13) %}
+    <option value="{{ hour }}">{{ '{:02d}'.format(hour) }}</option>
+    {% endfor %}
+  </select>
+  <label for="end_minute">End Minute:</label>
+  <select id="end_minute" name="end_minute" required>
+    {% for minute in range(0, 60, 15) %}
+    <option value="{{ minute }}">{{ '{:02d}'.format(minute) }}</option>
+    {% endfor %}
+  </select>
+  <select id="end_am_pm" name="end_am_pm" required>
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </select>
+  <br>
+  <button type="submit">Add Event</button>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td>{{ event.title }}</td>
+      <td>{{ event.start_time.strftime('%Y-%m-%d %I:%M %p') }}</td>
+      <td>{{ event.end_time.strftime('%Y-%m-%d %I:%M %p') }}</td>
+      <td>
+        <a href="{{ url_for('schedule.edit_event', event_id=event.id) }}">Edit</a>
+        <form method="POST" action="{{ url_for('schedule.delete_event', event_id=event.id) }}">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
